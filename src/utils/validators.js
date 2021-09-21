@@ -14,7 +14,19 @@ const userExists = async ({ email }) => {
   if (exists) throw err('Email already registered');
 };
 
+const login = async ({ email, password }) => {
+  if (!email || !password) {
+    throw err('All fields must be filled');
+  }
+
+  const checkUser = await userModel.getUserByEmail(email);
+  if (!checkUser || checkUser.password !== password) {
+    throw err('Incorrect username or password');
+  }
+};
+
 module.exports = {
   user,
   userExists,
+  login,
 };

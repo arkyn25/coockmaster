@@ -8,7 +8,12 @@ const userExists = (req, _res, next) => validate.userExists(req.body)
   .then(() => next())
   .catch(({ message }) => next({ status: 409, message }));
 
+const login = (req, _res, next) => validate.login(req.body)
+  .then(() => next())
+  .catch(({ message }) => next({ status: 401, message }));
+
 module.exports = {
   user,
   userExists,
+  login,
 };
