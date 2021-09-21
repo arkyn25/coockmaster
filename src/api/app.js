@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const user = require('../routes/userRoutes');
 const login = require('../routes/loginRoutes');
+const recipes = require('../routes/recipesRoutes');
 
 const app = express();
 app.use(bodyParser.json());
@@ -14,6 +15,7 @@ app.get('/', (request, response) => {
 
 app.use('/users', user);
 app.use('/login', login);
+app.use('/recipes', recipes);
 
 app.use((err, _req, res, _next) => {
   if (!err.status) return console.log(err);

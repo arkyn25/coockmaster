@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 const userModel = require('../models/userModel');
 
 const err = (message) => ({ message });
@@ -25,8 +27,32 @@ const login = async ({ email, password }) => {
   }
 };
 
+const recipe = async ({ name, ingredients, preparation }) => {
+  if (!name || !ingredients || !preparation) {
+    throw err('Invalid entries. Try again.');
+  }
+};
+
+const token = async ({ authorization }) => {
+  const secret = '2465hyf0874uj0238jslj293';
+  if (!authorization) {
+    throw err('missing auth token');
+  }
+  const payload = jwt.verify(authorization, secret);
+  if (!payload) {
+    throw err('jwt malformed');
+  }
+  const { password, ...checkUser } = await userModel.getUserByEmail(payload.email);
+  if (!checkUser) {
+    throw err('Invalid entries. Try again.');
+  }
+  return checkUser;
+};
+
 module.exports = {
   user,
   userExists,
   login,
+  recipe,
+  token,
 };
