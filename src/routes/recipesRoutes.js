@@ -13,4 +13,9 @@ route.post(
   recipe.createRecipe,
 );
 
+route.get(
+  '/',
+  recipe.recipesList,
+);
+
 module.exports = route;
