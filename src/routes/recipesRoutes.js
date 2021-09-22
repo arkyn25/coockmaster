@@ -35,4 +35,10 @@ route.delete(
   recipe.excluseRecipe,
 );
 
+route.put(
+  '/:id/image',
+  validate.token,
+  recipe.imageRecipe,
+);
+
 module.exports = route;

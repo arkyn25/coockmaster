@@ -17,10 +17,15 @@ const updateRecipe = (id, recipe, { _id: userId }) =>
 const excluseRecipe = (id) => recipesModel.excluseRecipe(id)
   .then(() => ({ status: 204 }));
 
+const imageRecipe = (id, path) => recipesModel.imageRecipe(id, `localhost:3000/${path}`)
+  .then(() => recipesModel.getById(id)
+  .then((data) => ({ status: 200, data })));
+
 module.exports = {
   createRecipe,
   recipesList,
   getById,
   updateRecipe,
   excluseRecipe,
+  imageRecipe,
 };

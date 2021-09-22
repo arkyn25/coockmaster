@@ -1,3 +1,4 @@
+const recipeImage = require('../middlewares/recipesImage');
 const recipesService = require('../services/recipeServices');
 
 const createRecipe = (req, res) => recipesService.createRecipe(req.body, req.user)
@@ -16,10 +17,15 @@ const updateRecipe = (req, res) => recipesService.updateRecipe(req.params.id, re
 const excluseRecipe = (req, res) => recipesService.excluseRecipe(req.params.id)
   .then(({ status }) => res.status(status).json());
 
+const imageRecipe = [recipeImage.single('image'),
+  (req, res) => recipesService.imageRecipe(req.params.id, req.file.path)
+  .then(({ status, data }) => res.status(status).json(data))];
+
 module.exports = {
   createRecipe,
   recipesList,
   getById,
   updateRecipe,
   excluseRecipe,
+  imageRecipe,
 };
