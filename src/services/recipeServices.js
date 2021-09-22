@@ -7,7 +7,11 @@ const createRecipe = (newRecipe, { _id: userId }) =>
 const recipesList = () => recipesModel.recipesList()
   .then((data) => ({ status: 200, data }));
 
+const getById = (id) => recipesModel.getById(id)
+  .then((recipe) => ({ status: 200, recipe }));
+
 module.exports = {
   createRecipe,
   recipesList,
+  getById,
 };

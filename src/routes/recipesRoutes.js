@@ -18,4 +18,10 @@ route.get(
   recipe.recipesList,
 );
 
+route.get(
+  '/:id',
+  validate.recipeId,
+  recipe.getById,
+);
+
 module.exports = route;
