@@ -14,9 +14,13 @@ const updateRecipe = (id, recipe, { _id: userId }) =>
   recipesModel.updateRecipe(id, { ...recipe, userId })
   .then(() => ({ status: 200, userId }));
 
+const excluseRecipe = (id) => recipesModel.excluseRecipe(id)
+  .then(() => ({ status: 204 }));
+
 module.exports = {
   createRecipe,
   recipesList,
   getById,
   updateRecipe,
+  excluseRecipe,
 };

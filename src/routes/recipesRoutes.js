@@ -29,5 +29,10 @@ route.put(
   validate.token,
   recipe.updateRecipe,
 );
+route.delete(
+  '/:id',
+  validate.token,
+  recipe.excluseRecipe,
+);
 
 module.exports = route;
