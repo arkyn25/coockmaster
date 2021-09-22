@@ -24,4 +24,10 @@ route.get(
   recipe.getById,
 );
 
+route.put(
+  '/:id',
+  validate.token,
+  recipe.updateRecipe,
+);
+
 module.exports = route;

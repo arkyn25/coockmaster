@@ -10,8 +10,13 @@ const recipesList = () => recipesModel.recipesList()
 const getById = (id) => recipesModel.getById(id)
   .then((recipe) => ({ status: 200, recipe }));
 
+const updateRecipe = (id, recipe, { _id: userId }) =>
+  recipesModel.updateRecipe(id, { ...recipe, userId })
+  .then(() => ({ status: 200, userId }));
+
 module.exports = {
   createRecipe,
   recipesList,
   getById,
+  updateRecipe,
 };

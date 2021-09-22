@@ -11,8 +11,13 @@ const recipesList = () => connection()
 const getById = (id) => connection()
   .then((db) => db.collection('recipes').findOne(ObjectId(id)));
 
+const updateRecipe = (id, recipe) => connection()
+  .then((db) => db.collection('recipes')
+  .updateOne({ _id: ObjectId(id) }, { $set: recipe }));
+
 module.exports = {
   createRecipe,
   recipesList,
   getById,
+  updateRecipe,
 };
