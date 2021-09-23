@@ -16,6 +16,7 @@ app.get('/', (request, response) => {
 app.use('/users', user);
 app.use('/login', login);
 app.use('/recipes', recipes);
+app.use('/images', express.static('src/uploads/'));
 
 app.use((err, _req, res, _next) => {
   if (!err.status) return console.log(err);
