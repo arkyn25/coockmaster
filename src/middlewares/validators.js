@@ -4,6 +4,10 @@ const user = (req, _res, next) => validate.user(req.body)
   .then(() => next())
   .catch(({ message }) => next({ status: 400, message }));
 
+const admin = (req, _res, next) => validate.admin(req.headers)
+  .then(() => next())
+  .catch(({ message }) => next({ status: 403, message }));
+
 const userExists = (req, _res, next) => validate.userExists(req.body)
   .then(() => next())
   .catch(({ message }) => next({ status: 409, message }));
@@ -27,16 +31,12 @@ const recipeId = (req, _res, next) => validate.recipeId(req.params.id)
   .then(() => next())
   .catch(({ message }) => next({ status: 404, message }));
 
-const admin = (req, _res, next) => validate.admin(req.headers)
-  .then(() => next())
-  .catch(({ message }) => next({ status: 403, message }));
-
 module.exports = {
   user,
+  admin,
   userExists,
   login,
   recipe,
   token,
   recipeId,
-  admin,
 };

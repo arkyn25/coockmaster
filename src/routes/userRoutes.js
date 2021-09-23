@@ -10,7 +10,7 @@ route.post(
   '/',
   validate.user,
   validate.userExists,
-  user.createAdmin,
+  user.createUser,
 );
 
 route.post(
@@ -20,4 +20,4 @@ route.post(
   user.createAdmin,
 );
 
-module.exports = route;
+module.exports = route; 
