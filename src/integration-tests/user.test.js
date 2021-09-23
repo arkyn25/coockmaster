@@ -83,11 +83,11 @@ describe('POST /login', () => {
       expect(response.body).to.be.an('object')
     });
 
-    it('deve retornar propriedade message', () => {
+    it('deve retornar propriedade "message"', () => {
       expect(response.body).to.have.a.property('message')
     });
 
-    it('deve retornar error message', () => {
+    it('deve retornar error "message"', () => {
       expect(response.body.message).to.be.equal('All fields must be filled')
     });
   });
@@ -116,11 +116,11 @@ describe('POST /login', () => {
       expect(response.body).to.be.an('object')
     });
 
-    it('deve retornar propriedade message', () => {
+    it('deve retornar propriedade "message"', () => {
       expect(response.body).to.have.property('message')
     });
 
-    it('deve retornar error message', () => {
+    it('deve retornar error "message"', () => {
       expect(response.body.message).to.equal('Incorrect username or password')
     });
   });
