@@ -54,6 +54,13 @@ const recipeId = async (id) => {
   if (!ObjectId.isValid(id)) throw err('recipe not found');
 };
 
+const admin = async ({ authorization }) => {
+  const secret = '2465hyf0874uj0238jslj293';
+  const { role } = jwt.verify(authorization, secret);
+
+  if (role !== 'admin') throw err('Only admins can register new admins');
+};
+
 module.exports = {
   user,
   userExists,
@@ -61,4 +68,5 @@ module.exports = {
   recipe,
   token,
   recipeId,
+  admin,
 };

@@ -27,6 +27,10 @@ const recipeId = (req, _res, next) => validate.recipeId(req.params.id)
   .then(() => next())
   .catch(({ message }) => next({ status: 404, message }));
 
+const admin = (req, _res, next) => validate.admin(req.headers)
+  .then(() => next())
+  .catch(({ message }) => next({ status: 403, message }));
+
 module.exports = {
   user,
   userExists,
@@ -34,4 +38,5 @@ module.exports = {
   recipe,
   token,
   recipeId,
+  admin,
 };
